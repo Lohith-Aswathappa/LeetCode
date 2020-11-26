@@ -28,3 +28,45 @@ class Solution {
         return dp[dp.length-1][dp[0].length-1];
     }
 }
+
+
+/*      Recursive solution
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+        //edge case
+        if(amount == 0 || coins.length == 0 || coins == null){
+            return 0;
+        }
+        //logic
+        int index = 0;
+        int coinsUsed = 0;
+        return helper(coins, amount, index, coinsUsed);
+    }
+    
+    private int helper(int[] coins, int amount, int index, int coinsUsed){
+        //base case
+        if(index >= coins.length || amount < 0)
+            return -1;
+        
+        if(amount == 0){
+            return coinsUsed;
+        }
+        
+        //logic
+        //choose 
+        int case1 = helper(coins, amount - coins[index], index, coinsUsed+1);
+        //not choose
+        int case2 = helper(coins, amount, index+1, coinsUsed);
+        
+        if(case1 < 0){
+            return case2;
+        }
+        
+        if(case2 < 0){
+            return case1;
+        }
+        
+        return Math.min(case1, case2);
+    }
+}
+*/
