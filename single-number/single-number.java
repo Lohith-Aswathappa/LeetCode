@@ -22,3 +22,27 @@ class Solution {
         return -1;
     }
 }
+
+
+
+
+/*
+class Solution {
+    public int singleNumber(int[] nums) {
+        //edge case
+        if(nums == null || nums.length == 0){
+            return -1;
+        }
+        
+        //logic
+        int a = 0;
+        
+        for(int i : nums){
+            a = a ^ i;
+        }
+        
+        
+        return a;
+    }
+}
+*/
