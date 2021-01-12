@@ -4,7 +4,6 @@ class Solution {
         if(s == null || s.length == 0){
             return;
         }
-        
         //logic
         int left = 0;
         int right = s.length - 1;
