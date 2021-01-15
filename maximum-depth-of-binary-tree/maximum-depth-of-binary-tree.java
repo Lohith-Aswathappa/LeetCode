@@ -16,17 +16,15 @@
 class Solution {
     int maxi;
     public int maxDepth(TreeNode root) {
-        maxi = 0;
-        
-        //edge case
+        // edge case
         if(root == null){
-            return maxi;
+            return 0;
         }
-        
         //logic
-        dfs(root, 1);
+        maxi = 0;
+        dfs(root, 0);
         
-        return maxi;
+        return maxi+1;
     }
     
     private void dfs(TreeNode root, int depth){
@@ -35,10 +33,7 @@ class Solution {
             return;
         }
         //logic
-        if(depth > maxi){
-            maxi = depth;
-        }
-        
+        maxi = Math.max(depth, maxi);
         dfs(root.left, depth+1);
         dfs(root.right, depth+1);
     }
