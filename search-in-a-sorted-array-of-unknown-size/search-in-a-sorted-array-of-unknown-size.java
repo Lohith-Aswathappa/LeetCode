@@ -12,10 +12,12 @@ class Solution {
         
         //logic
         int i = 1;
-        while(reader.get(i) <= target){
-            i = i*2;
-        }
         int start = 0;
+        while(reader.get(i) <= target){
+            start = i;
+            i = i*2;
+        }
+        
         int end = i;
         
         while(start <= end){
