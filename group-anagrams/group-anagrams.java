@@ -7,15 +7,17 @@ class Solution {
         //logic
         HashMap<String, List<String>> map = new HashMap<>();
         
-        for(String s : strs){
-            char[] arr = s.toCharArray();
-            Arrays.sort(arr);
-            String key = String.valueOf(arr);
+        
+        for(String str : strs){
+            char[] temp = str.toCharArray();
+            Arrays.sort(temp);
+            String key = new String(temp);
             
             if(!map.containsKey(key)){
                 map.put(key, new ArrayList<>());
             }
-            map.get(key).add(s);
+            
+            map.get(key).add(str);
         }
         
         return new ArrayList<>(map.values());
