@@ -1,8 +1,9 @@
 class Solution {
     public int maxSubArray(int[] nums) {
         //edge case
-        if(nums == null || nums.length == 0)
+        if(nums == null || nums.length == 0){
             return 0;
+        }
         //logic
         int curr = nums[0];
         int maxi = nums[0];
