@@ -1,42 +1,35 @@
-class Word{
-    int level;
-    String word;
-    public Word(String word, int level){
-        this.word = word;
-        this.level = level;
-    }
-}
 class Solution {
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
-        if (beginWord.length() == 0 || endWord.length() == 0 || wordList == null) return 0;
-        Queue<Word> q = new LinkedList<>();
-        q.offer(new Word(beginWord,1));
-       while(!q.isEmpty()){
-            Word curr = q.poll();
-           ListIterator<String> itr = wordList.listIterator();
-           while(itr.hasNext()){
-               String temp = itr.next();
-               if (isAdjacent(curr.word,temp)){
-                   itr.remove();
-                   q.offer(new Word(temp,curr.level+1));
-                   if (temp.equals(endWord)){
-                       return curr.level+1;
-                   }
-               }
-           }
-       }
-        return 0;
-    }
-    private boolean isAdjacent(String word,String temp){
+        if(beginWord == null || beginWord.length() == 0 || endWord == null || endWord.length() == 0 || !wordList.contains(endWord))
+            return 0;
+        Queue<String> q = new LinkedList<>();
+        Set<String> list = new HashSet<>(wordList);
+        q.add(beginWord);
         int count = 0;
-        for (int i = 0; i < word.length(); i++){
-            if (word.charAt(i)!= temp.charAt(i)){
-                count++;
-            }
-            if (count > 1){
-                return false;
+        int size = 0;
+        // q.remove(beginWord);
+        while(!q.isEmpty()){
+            count++;
+            size = q.size();
+            for(int j = 0; j < size; j++){
+                String currWord = q.poll();
+                if(currWord.equals(endWord)){
+                    return count;
+                }
+                int len = currWord.length();
+                for(int i = 0; i < len; i++){
+                    String pre = currWord.substring(0, i);
+                    String post = currWord.substring(i + 1, len);
+                    for(char ch ='a'; ch <= 'z'; ch++){
+                        String newWord = pre + ch + post;
+                        if(list.contains(newWord)){
+                            list.remove(newWord);
+                            q.add(newWord);
+                        }
+                    }
+                }
             }
         }
-        return true;
+        return 0;
     }
 }
